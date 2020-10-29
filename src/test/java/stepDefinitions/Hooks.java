@@ -13,11 +13,11 @@ import java.net.MalformedURLException;
 
 public class Hooks {
     public static WebDriver driver;
-    static String libWithDriversLocation = System.getProperty("user.dir") + "\\lib\\";
+    static String libWithDriversLocation = System.getProperty("user.dir") + "/lib/";
 
     @Before
     public void openBrowser() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver");
         driver = new ChromeDriver();
         driver.manage().deleteAllCookies();
     }
