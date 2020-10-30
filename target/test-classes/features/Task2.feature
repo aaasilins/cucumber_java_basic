@@ -1,11 +1,14 @@
 Feature: List of people
 
-  Scenario: Add a new person
+  Scenario Outline: Add a new person
     When Navigate to URL "https://kristinek.github.io/site/tasks/list_of_people.html"
     And I click on "addPersonBtn"
-    And Fill in all the details with "Andrejs" and "Silins"
+    And Fill in all the details with "<name>" and "<surname>"
     And I click on "modal_button"
-    Then Person appears in the main list with "Andrejs" and "Silins"
+    Then Person appears in the main list with "<name>" and "<surname>"
+    Examples:
+    |name|surname|
+    |Andrejs|Silins|
 
   Scenario: Edit a person
     When Navigate to URL "https://kristinek.github.io/site/tasks/list_of_people.html"
@@ -21,14 +24,17 @@ Feature: List of people
     And I click on first person Remove button
     Then Person "Mike" "Kid" is not present in the list
 
-  Scenario: Reset a list after adding a person
+  Scenario Outline: Reset a list after adding a person
     When Navigate to URL "https://kristinek.github.io/site/tasks/list_of_people.html"
     And I click on "addPersonBtn"
-    And Fill in all the details with "Andrejs" and "Silins"
+    And Fill in all the details with "<name>" and "<surname>"
     And I click on "modal_button"
-    And Person appears in the main list with "Andrejs" and "Silins"
+    And Person appears in the main list with "<name>" and "<surname>"
     And I click to reset the list
     Then List of persons contains only default entries
+    Examples:
+      |name|surname|
+      |Andrejs|Silins|
 
   Scenario: Reset a list after editing a person
     When Navigate to URL "https://kristinek.github.io/site/tasks/list_of_people.html"
